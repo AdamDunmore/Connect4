@@ -1,5 +1,3 @@
-﻿//Test algorithms
-//Fix Row and maybe Colum Algoritms
 char[,] board = 
 {
 {'*','*','*','*','*'},
@@ -12,15 +10,47 @@ char[,] board =
 bool gameRunning = true;
 int slot;
 char turn = '0';
-int[] lastMove = {0, 0};
+int lastMoveX = 0;
+int lastMoveY = 0;
 
 void CheckWinning(){
     int localPoints = 1;
+    
+    //Rows
+    //Left
+    for(int l = 1; l < 6; l++){
+        Console.WriteLine("Left");
+        Console.WriteLine(turn);
+        if (lastMoveX - l >= 0){
+            if (board[lastMoveY, lastMoveX - l] == turn){
+                localPoints++;
+            }
+            else{
+                break;
+            }
+        }
+    }
+
+    //Right
+    for (int r = 1; r < 6; r++){
+        if (lastMoveX + r <= 4){
+            if (board[lastMoveY,lastMoveX + r] == turn){
+                localPoints++;
+            }
+            else{
+                break;
+            }
+        }
+    }
+
+    localPoints = 0;
+
+    //Columns
 
     
 
 
-    Console.WriteLine(localPoints);
+    Console.WriteLine("Local Points: " + localPoints);
     if (localPoints == 4){
         Console.Clear();
         ShowBoard();
@@ -57,8 +87,8 @@ void PlaceInSlot(int slot){
     for (int k = 4; k > -1; k--){
         if (board[k,slot] == '*'){
             board[k,slot] = turn;
-            lastMove[0] = k;
-            lastMove[1] = slot;
+            lastMoveY = k;
+            lastMoveX = slot;
             break;
         }
     }
