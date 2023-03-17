@@ -18,9 +18,7 @@ void CheckWinning(){
     
     //Rows
     //Left
-    for(int l = 1; l < 6; l++){
-        Console.WriteLine("Left");
-        Console.WriteLine(turn);
+    for(int l = 1; l < 5; l++){
         if (lastMoveX - l >= 0){
             if (board[lastMoveY, lastMoveX - l] == turn){
                 localPoints++;
@@ -32,7 +30,7 @@ void CheckWinning(){
     }
 
     //Right
-    for (int r = 1; r < 6; r++){
+    for (int r = 1; r < 5; r++){
         if (lastMoveX + r <= 4){
             if (board[lastMoveY,lastMoveX + r] == turn){
                 localPoints++;
@@ -43,10 +41,26 @@ void CheckWinning(){
         }
     }
 
-    localPoints = 0;
+    if(localPoints <4){
+        localPoints = 1;
 
-    //Columns
+        //Columns(Down)
+        for(int d = 1; d < 5; d++){
+            if (lastMoveY + d <= 4){
+                if (board[lastMoveY + d,lastMoveX] == turn){
+                    localPoints++;
+                }
+                else{
+                    break;
+                }
+            }
+    }}
 
+    //Diagonals
+    if(localPoints < 4){
+        localPoints = 1;
+        
+    }
     
 
 
