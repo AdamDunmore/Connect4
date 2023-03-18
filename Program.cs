@@ -57,9 +57,39 @@ void CheckWinning(){
     }}
 
     //Diagonals
+    //D Right
     if(localPoints < 4){
         localPoints = 1;
+
+        for (int dr = 1; dr< 5; dr++){
+            if (lastMoveX - dr >= 0 && lastMoveY + dr <= 4){
+                if (board[lastMoveY + dr, lastMoveX - dr] == turn){
+                    localPoints++;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+
         
+    }
+
+    //D Left
+    if (localPoints < 4){
+        localPoints = 1;
+
+        for (int dl = 1; dl < 5; dl++){
+            if (lastMoveX + dl <= 4 && lastMoveY + dl <=4){
+                if (board[lastMoveY + dl, lastMoveX + dl] == turn){
+                    localPoints++;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+
     }
     
 
@@ -110,7 +140,7 @@ void PlaceInSlot(int slot){
 
 
 while (gameRunning == true){
-    //Console.Clear();
+    Console.Clear();
     if (turn == '0'){
         turn = '1';
     }
